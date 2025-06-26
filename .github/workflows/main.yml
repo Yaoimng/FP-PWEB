@@ -17,15 +17,15 @@ jobs:
       # Setup Git
       - name: Setup Git for Huggingface
         run: |
-          git config --global user.email "abdan.hafidz@gmail.com"
-          git config --global user.name "abdanhafidz"
+          git config --global user.email "zakysurya12@gmail.com"
+          git config --global user.name "akii99"
 
       # Clone Huggingface Space Repository
       - name: Clone Huggingface Space
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          git clone https://huggingface.co/spaces/lifedebugger/urna-backend space
+          git clone https://huggingface.co/spaces/akii99/FP-PWEB
 
       # Update Git Remote URL and Pull Latest Changes
       - name: Update Remote and Pull Changes
@@ -33,7 +33,7 @@ jobs:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
           cd space
-          git remote set-url origin https://lifedebugger:$HF_TOKEN@huggingface.co/spaces/lifedebugger/urna-backend
+          git remote set-url origin https://akii99:$HF_TOKEN@huggingface.co/spaces/akii99/FP-PWEB
           git pull origin main || echo "No changes to pull"
 
       # Copy Files to Huggingface Space
