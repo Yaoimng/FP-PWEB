@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Datang di E-Library</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Hubungkan ke file CSS untuk animasi baru -->
+    <link rel="stylesheet" href="css/landing.css">
+
+    <style> 
+        body { font-family: 'Poppins', sans-serif; } 
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800 overflow-x-hidden">
+
+    <!-- Navbar untuk Landing Page -->
+    <header class="absolute top-0 left-0 w-full z-10">
+        <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-24">
+                <a href="index.html" class="flex-shrink-0 flex items-center">
+                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-amber-800" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+                    <span class="ml-2 text-2xl font-bold text-stone-800">E-Library</span>
+                </a>
+                <div class="flex items-center space-x-4">
+                    <a href="login.html" class="font-semibold text-stone-600 hover:text-stone-900 transition">Login</a>
+                    <a href="register.html" class="bg-stone-800 text-white font-bold px-5 py-3 rounded-lg hover:bg-stone-900 transition text-sm">Daftar Sekarang</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Konten Utama / Hero Section -->
+    <main class="min-h-screen flex items-center">
+        <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            
+            <!-- Kolom Teks -->
+            <div class="text-center md:text-left">
+                <h1 class="text-5xl md:text-6xl font-extrabold leading-tight">
+                    Buka Jendela Dunia, <br>
+                    <span class="text-amber-800">Satu Halaman Sekaligus.</span>
+                </h1>
+                <p class="mt-6 text-lg text-stone-600 max-w-lg mx-auto md:mx-0">
+                    Selamat datang di perpustakaan digital kami. Akses ribuan judul buku, pinjam dengan mudah, dan mulailah petualangan literasi Anda hari ini.
+                </p>
+                <div class="mt-10">
+                    <a id="learn-more-btn" href="login.html" class="inline-block bg-amber-800 text-white font-bold text-lg px-8 py-4 rounded-lg hover:bg-amber-900 transition shadow-lg transform hover:scale-105">
+                        Jelajahi Sekarang
+                    </a>
+                </div>
+            </div>
+
+            <!-- === Kolom Ilustrasi Baru: Kolase Buku Melayang === -->
+            <div id="featured-book-container" class="flex justify-center items-center">
+                <p class="text-stone-500">Memuat buku unggulan...</p>
+            </div>
+            
+        </div>
+    </main>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const learnMoreBtn = document.getElementById('learn-more-btn');
+            const token = localStorage.getItem('token');
+            const featuredBookContainer = document.getElementById('featured-book-container');
+            const API_BASE_URL = 'http://127.0.0.1:5000';
+    
+            // Cek token untuk tombol "Jelajahi Sekarang"
+            if (token) {
+                learnMoreBtn.href = 'dashboard.html';
+            }
+    
+            // Fungsi untuk mengambil dan menampilkan satu buku unggulan
+            async function fetchFeaturedBook() {
+                try {
+                    // Ambil data dari API buku Anda
+                    const response = await fetch(`${API_BASE_URL}/api/books`);
+                    if (!response.ok) throw new Error('Gagal mengambil data buku.');
+    
+                    const result = await response.json();
+                    
+                    // Ambil buku pertama sebagai buku unggulan
+                    const featuredBook = result.data[0];
+    
+                    // Jika tidak ada buku sama sekali di database, jangan tampilkan apa-apa
+                    if (!featuredBook) {
+                        featuredBookContainer.innerHTML = ''; 
+                        return;
+                    }
+    
+                    // Tentukan URL gambar, gunakan placeholder jika tidak ada cover_image
+                    const imageUrl = featuredBook.cover_image 
+                        ? `${API_BASE_URL}/uploads/covers/${featuredBook.cover_image}` 
+                        : 'https://source.unsplash.com/400x600/?book,minimal';
+    
+                    // Membuat HTML untuk kartu buku yang elegan
+                    const cardHTML = `
+                        <div class="w-80 h-auto p-4 bg-white rounded-2xl shadow-2xl transform transition-all duration-500 hover:scale-105 hover:rotate-3">
+                            <a href="detail-buku.html?id=${featuredBook.id}">
+                                <img src="${imageUrl}" alt="Sampul buku ${featuredBook.judul}" class="w-full h-96 object-cover rounded-lg shadow-md">
+                                <div class="mt-4">
+                                    <h3 class="text-xl font-bold text-stone-800 truncate">${featuredBook.judul}</h3>
+                                    <p class="text-sm text-stone-500 mt-1">oleh ${featuredBook.penulis}</p>
+                                </div>
+                            </a>
+                        </div>
+                    `;
+    
+                    // Tampilkan kartu di dalam wadah
+                    featuredBookContainer.innerHTML = cardHTML;
+    
+                } catch (error) {
+                    console.error("Error fetching featured book:", error);
+                    featuredBookContainer.innerHTML = '<p class="text-stone-500">Gagal memuat buku.</p>';
+                }
+            }
+    
+            // Panggil fungsi saat halaman dimuat
+            fetchFeaturedBook();
+        });
+    </script>
+</body>
+</html>

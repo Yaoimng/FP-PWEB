@@ -1,0 +1,75 @@
+/* Container untuk kolase buku */
+.book-collage-container {
+    position: relative;
+    transform-style: preserve-3d;
+    perspective: 1500px;
+}
+
+/* Gaya untuk setiap item sampul buku */
+.book-cover-item {
+    position: absolute;
+    width: 150px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    /* Terapkan animasi float */
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Efek saat kursor mendekati container */
+.book-collage-container:hover .book-cover-item {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    transform: translateY(-10px) scale(1.05) !important; /* Paksa override posisi animasi */
+}
+
+/* Posisi unik dan delay animasi untuk setiap buku */
+.book-cover-item:nth-child(1) {
+    transform: rotate(-15deg) translate(-80px, 20px);
+    z-index: 2;
+    animation-delay: -1s;
+}
+.book-cover-item:nth-child(2) {
+    transform: rotate(5deg) translate(0px, -50px);
+    z-index: 3;
+    width: 180px; /* Buku utama di tengah lebih besar */
+    animation-delay: 0s;
+}
+.book-cover-item:nth-child(3) {
+    transform: rotate(15deg) translate(90px, 40px);
+    z-index: 2;
+    animation-delay: -2s;
+}
+.book-cover-item:nth-child(4) {
+    transform: rotate(-5deg) translate(-30px, 120px);
+    z-index: 1;
+    opacity: 0.9;
+    animation-delay: -3s;
+}
+.book-cover-item:nth-child(5) {
+    transform: rotate(20deg) translate(120px, -90px);
+    z-index: 1;
+    opacity: 0.9;
+    animation-delay: -1.5s;
+}
+
+/* Keyframes untuk animasi melayang (float) */
+@keyframes float {
+    0% {
+        transform: translateY(0px) rotate(var(--initial-rotate, 0deg));
+    }
+    50% {
+        transform: translateY(-20px) rotate(var(--initial-rotate, 0deg));
+    }
+    100% {
+        transform: translateY(0px) rotate(var(--initial-rotate, 0deg));
+    }
+}
+
+/* Menyesuaikan rotasi awal untuk animasi yang lebih dinamis */
+.book-cover-item:nth-child(1) { --initial-rotate: -15deg; }
+.book-cover-item:nth-child(2) { --initial-rotate: 5deg; }
+.book-cover-item:nth-child(3) { --initial-rotate: 15deg; }
+.book-cover-item:nth-child(4) { --initial-rotate: -5deg; }
+.book-cover-item:nth-child(5) { --initial-rotate: 20deg; }
+

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Buku - Admin Panel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style> body { font-family: 'Poppins', sans-serif; } </style>
+</head>
+<body class="bg-stone-100">
+    <header class="bg-white shadow-sm">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="admin.html" class="text-amber-700 hover:text-amber-800 font-semibold">&larr; Kembali ke Dashboard</a>
+                <span id="form-title" class="text-xl font-bold text-stone-800">Memuat data buku...</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto py-8 sm:px-6 lg:px-8">
+        <div class="bg-white rounded-2xl shadow-xl p-10">
+            <form id="edit-book-form" class="space-y-5">
+                <div>
+                    <label for="judul" class="text-stone-700 text-sm font-medium">Judul Buku</label>
+                    <input type="text" id="judul" required class="mt-1 w-full px-4 py-3 bg-white border border-stone-300 rounded-lg">
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label for="penulis" class="text-stone-700 text-sm font-medium">Penulis</label>
+                        <input type="text" id="penulis" required class="mt-1 w-full px-4 py-3 bg-white border border-stone-300 rounded-lg">
+                    </div>
+                    <div>
+                        <label for="penerbit" class="text-stone-700 text-sm font-medium">Penerbit</label>
+                        <input type="text" id="penerbit" required class="mt-1 w-full px-4 py-3 bg-white border border-stone-300 rounded-lg">
+                    </div>
+                </div>
+                 <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                    <div>
+                        <label for="tahun_terbit" class="text-stone-700 text-sm font-medium">Tahun Terbit</label>
+                        <input type="number" id="tahun_terbit" required class="mt-1 w-full px-4 py-3 bg-white border border-stone-300 rounded-lg">
+                    </div>
+                    <div>
+                        <label for="isbn" class="text-stone-700 text-sm font-medium">ISBN</label>
+                        <input type="text" id="isbn" required class="mt-1 w-full px-4 py-3 bg-white border border-stone-300 rounded-lg">
+                    </div>
+                     <div>
+                        <label for="jumlah_stok" class="text-stone-700 text-sm font-medium">Jumlah Stok</label>
+                        <input type="number" id="jumlah_stok" required class="mt-1 w-full px-4 py-3 bg-white border border-stone-300 rounded-lg">
+                    </div>
+                </div>
+                <div>
+                    <label for="sinopsis" class="text-stone-700 text-sm font-medium">Sinopsis</label>
+                    <textarea id="sinopsis" rows="4" required class="mt-1 w-full px-4 py-3 bg-white border border-stone-300 rounded-lg"></textarea>
+                </div>
+                <div class="pt-4">
+                    <button type="submit" class="w-full bg-stone-800 text-white font-bold py-3 px-4 rounded-lg hover:bg-stone-900">
+                        Update Buku
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <script src="edit-buku.js" defer></script>
+</body>
+</html>

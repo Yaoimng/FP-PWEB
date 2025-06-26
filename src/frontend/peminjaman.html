@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peminjaman Saya - E-Library</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- === HUBUNGKAN FILE CSS UNTUK NOTIFIKASI === -->
+    <link rel="stylesheet" href="css/custom.css">
+
+    <style> 
+        body { font-family: 'Poppins', sans-serif; } 
+    </style>
+</head>
+<body class="bg-stone-100">
+
+    <!-- Container Notifikasi (akan muncul di pojok kanan atas) -->
+    <div id="notification-container"></div>
+
+    <header class="bg-white shadow-sm sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-amber-800" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                    <a href="dashboard.html" class="ml-2 text-2xl font-bold text-stone-800">E-Library</a>
+                </div>
+                 <div class="flex items-center">
+                    <a href="dashboard.html" class="bg-stone-800 text-white font-bold px-4 py-2 rounded-lg hover:bg-stone-900 transition duration-200 text-sm">
+                        Kembali ke Katalog
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto py-8 sm:px-6 lg:px-8">
+        <div class="px-4">
+            <h1 class="text-4xl font-bold text-stone-900 mb-8">Buku yang Sedang Saya Pinjam</h1>
+            
+            <div id="borrowed-books-list" class="space-y-6">
+                <div id="loading-indicator" class="text-center col-span-full text-stone-500">Memuat data peminjaman...</div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- === HUBUNGKAN FILE JS NOTIFIKASI & SCRIPT UTAMA === -->
+    <script src="js/notifications.js"></script>
+    <script src="peminjaman.js"></script>
+</body>
+</html>
