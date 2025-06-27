@@ -29,9 +29,12 @@ def migrate():
         penulis VARCHAR(100) NOT NULL,
         penerbit VARCHAR(100) NOT NULL,
         tahun_terbit INT,
-        deskripsi TEXT,
-        stok INT DEFAULT 1,
-        cover_path VARCHAR(255),
+        isbn VARCHAR(50),
+        sinopsis TEXT,
+        jumlah_stok INT DEFAULT 1,
+        stok_tersedia INT DEFAULT 1,
+        cover_image VARCHAR(255),
+        status VARCHAR(20) DEFAULT 'tersedia',
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
     ''')
@@ -78,6 +81,53 @@ def migrate():
             print("Added status column to books table")
     except Exception as e:
         print(f"Error adding status column: {e}")
+        
+    # Add isbn column to books if it doesn't exist
+    try:
+        cursor.execute("SHOW COLUMNS FROM books LIKE 'isbn'")
+        if not cursor.fetchone():
+            cursor.execute("ALTER TABLE books ADD COLUMN isbn VARCHAR(50)")
+            print("Added isbn column to books table")
+    except Exception as e:
+        print(f"Error adding isbn column: {e}")
+        
+    # Add sinopsis column to books if it doesn't exist
+    try:
+        cursor.execute("SHOW COLUMNS FROM books LIKE 'sinopsis'")
+        if not cursor.fetchone():
+            cursor.execute("ALTER TABLE books ADD COLUMN sinopsis TEXT")
+            print("Added sinopsis column to books table")
+    except Exception as e:
+        print(f"Error adding sinopsis column: {e}")
+        
+    # Add jumlah_stok column to books if it doesn't exist
+    try:
+        cursor.execute("SHOW COLUMNS FROM books LIKE 'jumlah_stok'")
+        if not cursor.fetchone():
+            cursor.execute("ALTER TABLE books ADD COLUMN jumlah_stok INT DEFAULT 1")
+            print("Added jumlah_stok column to books table")
+    except Exception as e:
+        print(f"Error adding jumlah_stok column: {e}")
+        
+    # Add stok_tersedia column to books if it doesn't exist
+    try:
+        cursor.execute("SHOW COLUMNS FROM books LIKE 'stok_tersedia'")
+        if not cursor.fetchone():
+            cursor.execute("ALTER TABLE books ADD COLUMN stok_tersedia INT DEFAULT 1")
+            print("Added stok_tersedia column to books table")
+    except Exception as e:
+        print(f"Error adding stok_tersedia column: {e}")
+        
+    # Rename cover_path to cover_image if needed
+    try:
+        cursor.execute("SHOW COLUMNS FROM books LIKE 'cover_path'")
+        if cursor.fetchone():
+            cursor.execute("SHOW COLUMNS FROM books LIKE 'cover_image'")
+            if not cursor.fetchone():
+                cursor.execute("ALTER TABLE books CHANGE COLUMN cover_path cover_image VARCHAR(255)")
+                print("Renamed cover_path to cover_image")
+    except Exception as e:
+        print(f"Error renaming cover_path column: {e}")
     
     # Commit perubahan
     conn.commit()
