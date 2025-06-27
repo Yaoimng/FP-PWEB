@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    const API_BASE_URL = 'http://127.0.0.1:5000';
+    const API_BASE_URL = 'https://fp-pweb-production.up.railway.app/';
     const bookListBody = document.getElementById('admin-book-list');
 
     async function fetchAndDisplayAllBooks() {
