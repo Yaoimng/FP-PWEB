@@ -4,7 +4,7 @@ from flask import Blueprint
 from .controllers import get_all_books, get_book_by_id, add_new_book, update_book_by_id, delete_book_by_id
 # Impor decorator dari extensions
 from extensions import token_required
-
+#tes
 # Membuat Blueprint
 books_bp = Blueprint('books', __name__)
 
@@ -30,3 +30,4 @@ def books_update_by_id(current_user, book_id):
 @token_required(allowed_roles=['admin'])
 def books_delete_by_id(current_user, book_id):
     return delete_book_by_id(book_id)
+print("Books routes registered successfully.")

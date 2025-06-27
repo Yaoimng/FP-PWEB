@@ -162,3 +162,5 @@ def update_book_by_id(book_id):
         return jsonify({"status": "sukses", "message": "Buku berhasil diupdate!"}), 200
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
+    
+print("Books controllers loaded successfully.")
