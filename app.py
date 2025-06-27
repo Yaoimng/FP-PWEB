@@ -1,5 +1,5 @@
 import os
-from flask import Flask, jsonify, request, send_from_directory
+from flask import Flask, jsonify, request, send_from_directory, send_file
 from flask_bcrypt import Bcrypt
 from datetime import datetime, timedelta
 import jwt
@@ -11,7 +11,25 @@ from extensions import app, bcrypt, get_db_connection, token_required
 # --- ROUTE UTAMA ---
 @app.route('/')
 def index():
-    return "Halo! Server Flask untuk Perpustakaan sedang berjalan."
+    return send_file('src/frontend/index.html')
+
+# --- ROUTE UNTUK FILE FRONTEND ---
+@app.route('/<path:path>')
+def serve_frontend(path):
+    # Mencoba mengirim file dari folder frontend
+    try:
+        return send_file(f'src/frontend/{path}')
+    except:
+        return "File tidak ditemukan", 404
+
+# --- ROUTE UNTUK FILE STATIS (CSS, JS, dll) ---
+@app.route('/css/<path:filename>')
+def serve_css(filename):
+    return send_from_directory('src/frontend/css', filename)
+
+@app.route('/js/<path:filename>')
+def serve_js(filename):
+    return send_from_directory('src/frontend/js', filename)
 
 # --- ROUTE UNTUK MENYAJIKAN GAMBAR ---
 @app.route('/uploads/covers/<path:filename>')
