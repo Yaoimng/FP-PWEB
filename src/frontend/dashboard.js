@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     // --- 1. KEAMANAN & INISIALISASI ---
     const token = localStorage.getItem('token');
-    const API_BASE_URL = 'https://fp-pweb-production.up.railway.app/';
+    const API_BASE_URL = 'https://fp-pweb-production.up.railway.app';
     
     // --- PENAMBAHAN BARU: Variabel untuk Carousel ---
     const featuredCarousel = document.getElementById('featured-books-carousel');
