@@ -2,8 +2,8 @@
 
 from flask import Blueprint
 from .controllers import get_all_books, get_book_by_id, add_new_book, update_book_by_id, delete_book_by_id
-# Kita perlu import decorator dari file utama
-from app import token_required
+# Impor decorator dari extensions
+from extensions import token_required
 
 # Membuat Blueprint
 books_bp = Blueprint('books', __name__)

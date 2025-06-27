@@ -3,7 +3,8 @@
 from flask import Blueprint
 # Impor fungsi-fungsi baru dari controller
 from .controllers import borrow_a_book, get_my_borrowings, return_a_book
-from app import token_required
+# Impor decorator dari extensions
+from extensions import token_required
 
 # Membuat Blueprint untuk borrowings
 borrowings_bp = Blueprint('borrowings', __name__)

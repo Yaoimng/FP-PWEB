@@ -1,7 +1,7 @@
 # Isi file: src/borrowings/controllers.py
 
 from flask import jsonify
-from app import get_db_connection
+from extensions import get_db_connection
 from datetime import date, timedelta
 import mysql.connector
 

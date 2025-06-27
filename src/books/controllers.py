@@ -3,8 +3,8 @@ from flask import request, jsonify
 from werkzeug.utils import secure_filename
 from uuid import uuid4
 
-# Kita import 'app' untuk mengambil konfigurasi dan 'get_db_connection'
-from app import app, get_db_connection
+# Impor dari extensions bukan dari app
+from extensions import app, get_db_connection
 import mysql.connector
 
 # --- KONFIGURASI UNTUK UPLOAD ---
