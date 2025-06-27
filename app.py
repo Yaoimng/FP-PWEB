@@ -44,7 +44,7 @@ def register_user():
         else: return jsonify({"status": "error", "message": str(err)}), 500
     finally:
         if conn and conn.is_connected(): conn.close()
-
+    
 @app.route('/api/login', methods=['POST'])
 def login_user():
     data = request.get_json()
@@ -97,4 +97,5 @@ app.register_blueprint(borrowings_bp)
 
 # --- MENJALANKAN APLIKASI ---
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 7860))
+    app.run(host='0.0.0.0', port=port, debug=False)
