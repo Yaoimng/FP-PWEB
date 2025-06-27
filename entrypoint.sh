@@ -4,5 +4,7 @@
 mkdir -p static/uploads/covers
 chmod -R 777 static/uploads/covers
 
-# Mulai aplikasi
+echo "Running database migrations..."
+python migrate.py
+echo "Starting the application..."
 python app.py

@@ -21,15 +21,21 @@ app.config['UPLOAD_FOLDER'] = 'static/uploads/covers'
 # Database connection helper
 def get_db_connection():
     try:
-        conn = mysql.connector.connect(
-            host=os.getenv('DB_HOST'),
-            user=os.getenv('DB_USER'),
-            password=os.getenv('DB_PASSWORD'),
-            database=os.getenv('DB_NAME')
+        # Prioritaskan variabel Railway jika tersedia
+        host = os.environ.get('MYSQLHOST') or os.environ.get('DB_HOST')
+        user = os.environ.get('MYSQLUSER') or os.environ.get('DB_USER')
+        password = os.environ.get('MYSQLPASSWORD') or os.environ.get('DB_PASSWORD')
+        database = os.environ.get('MYSQL_DATABASE') or os.environ.get('MYSQLDATABASE') or os.environ.get('DB_NAME')
+        
+        connection = mysql.connector.connect(
+            host=host,
+            user=user,
+            password=password,
+            database=database
         )
-        return conn
-    except mysql.connector.Error as err:
-        print(f"Error: {err}")
+        return connection
+    except mysql.connector.Error as e:
+        print(f"Error connecting to MySQL: {e}")
         return None
 
 # --- DECORATOR UNTUK PROTEKSI TOKEN ---
