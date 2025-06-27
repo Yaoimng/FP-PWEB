@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return; 
     }
 
-    const API_BASE_URL = 'https://fp-pweb-production.up.railway.app';
+    const API_BASE_URL = CONFIG.API_BASE_URL;
     const borrowedBooksList = document.getElementById('borrowed-books-list');
 
     const fetchAndDisplayBorrowedBooks = async () => {

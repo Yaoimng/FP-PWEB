@@ -62,12 +62,13 @@
         </div>
     </main>
     
+    <script src="js/config.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const learnMoreBtn = document.getElementById('learn-more-btn');
             const token = localStorage.getItem('token');
             const featuredBookContainer = document.getElementById('featured-book-container');
-            const API_BASE_URL = 'https://fp-pweb-production.up.railway.app';
+            const API_BASE_URL = CONFIG.API_BASE_URL;
     
             // Cek token untuk tombol "Jelajahi Sekarang"
             if (token) {

@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const password = document.getElementById('password').value;
 
         try {
-            const response = await fetch('https://fp-pweb-production.up.railway.app/api/login', {
+            const response = await fetch(`${CONFIG.API_BASE_URL}/api/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email: email, password: password })

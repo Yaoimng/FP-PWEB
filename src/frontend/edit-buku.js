@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const bookId = urlParams.get('id');
     if (!bookId) { alert('ID buku tidak ditemukan.'); window.location.href = 'admin.html'; return; }
 
-    const API_BASE_URL = 'https://fp-pweb-production.up.railway.app';
+    const API_BASE_URL = CONFIG.API_BASE_URL;
     const formTitle = document.getElementById('form-title');
     const editBookForm = document.getElementById('edit-book-form');
 

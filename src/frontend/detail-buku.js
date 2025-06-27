@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const bookId = urlParams.get('id');
 
-    // Inisialisasi variabel
-    const API_BASE_URL = 'https://fp-pweb-production.up.railway.app';
+    // Menggunakan API_BASE_URL dari config.js
+    const API_BASE_URL = CONFIG.API_BASE_URL;
     const bookDetailContainer = document.getElementById('book-detail-container');
     const loadingText = document.getElementById('loading-text');
 

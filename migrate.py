@@ -70,6 +70,15 @@ def migrate():
     except Exception as e:
         print(f"Error saat memeriksa/membuat indeks idx_book_id: {e}")
     
+    # Add status column to books if it doesn't exist
+    try:
+        cursor.execute("SHOW COLUMNS FROM books LIKE 'status'")
+        if not cursor.fetchone():
+            cursor.execute("ALTER TABLE books ADD COLUMN status VARCHAR(20) DEFAULT 'tersedia'")
+            print("Added status column to books table")
+    except Exception as e:
+        print(f"Error adding status column: {e}")
+    
     # Commit perubahan
     conn.commit()
     

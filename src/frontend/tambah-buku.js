@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 2. LOGIKA PENGIRIMAN FORM ---
     const addBookForm = document.getElementById('add-book-form');
-    const API_BASE_URL = 'http://127.0.0.1:5000';
+    const API_BASE_URL = CONFIG.API_BASE_URL;
 
     addBookForm.addEventListener('submit', async (event) => {
         event.preventDefault();
