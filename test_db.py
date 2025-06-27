@@ -22,6 +22,8 @@ except mysql.connector.Error as err:
 except Exception as e:
     print(f">>> GAGAL! Terjadi error umum: {e}")
 
-API_BASE_URL = window.location.hostname === 'localhost' 
-  ? 'http://localhost:5000' 
-  : 'https://fp-pweb-production.up.railway.app/'
+# Set API_BASE_URL based on environment variable or default to production
+if os.getenv('FLASK_ENV') == 'development':
+    API_BASE_URL = 'http://localhost:5000'
+else:
+    API_BASE_URL = 'https://fp-pweb-production.up.railway.app/'
