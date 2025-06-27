@@ -1,0 +1,31 @@
+build_targets:
+  - app.py
+  - extensions.py
+  - entrypoint.sh
+  - requirements.txt
+  - src/
+  - static/
+
+api_endpoints:
+  - uri: /
+    description: "Main Page"
+  
+  - uri: /api/books
+    method: GET
+    description: "Get all books"
+  
+  - uri: /api/books/{book_id}
+    method: GET
+    description: "Get book by ID"
+
+  - uri: /api/login
+    method: POST
+    description: "Login API"
+  
+  - uri: /api/register
+    method: POST
+    description: "Register API"
+
+  - uri: /api/profile
+    method: GET
+    description: "Get user profile"

@@ -1,31 +1,39 @@
-# Hugging Face Space Configuration
-This file contains configuration for the Hugging Face Space.
+---
+title: FP PWEB
+emoji: 🐨
+colorFrom: purple
+colorTo: yellow
+sdk: docker
+pinned: false
+---
 
-## Folders and Files
+# Aplikasi Perpustakaan
 
-- The `static/uploads/covers` directory is used for storing uploaded book cover images.
-- Actual image files are not included in the repository to comply with Hugging Face's binary file policies.
-- When running the application in Hugging Face Space, you'll need to manually upload sample images or the application will use a placeholder.
+Aplikasi REST API perpustakaan menggunakan Flask dan MySQL.
 
-## Running the Application
+## API Endpoints
 
-To run this application in Hugging Face Space:
+### Autentikasi
+- **POST /api/register** - Mendaftar pengguna baru
+- **POST /api/login** - Login untuk mendapatkan token
+- **GET /api/profile** - Mendapatkan profil pengguna
 
-1. The Dockerfile is configured to automatically create the required directories.
-2. The application will start on port 5000.
+### Buku
+- **GET /api/books** - Mendapatkan semua buku
+- **GET /api/books/{id}** - Mendapatkan detail buku berdasarkan ID
+- **POST /api/books** - Menambah buku baru (admin)
+- **PUT /api/books/{id}** - Memperbarui buku (admin)
+- **DELETE /api/books/{id}** - Menghapus buku (admin)
 
-## Managing Images
+### Peminjaman
+- **POST /api/borrow/{book_id}** - Meminjam buku
+- **GET /api/my-borrowings** - Melihat peminjaman sendiri
+- **POST /api/return/{borrow_id}** - Mengembalikan buku
 
-Since the binary image files are excluded from the repository, you have a few options:
+## Teknologi
 
-1. When users upload new images through the application, they will be stored in the container's filesystem.
-2. For persistent storage of images beyond the container's lifecycle, consider integrating with an external service like S3, GCP Storage, or similar.
-
-## Environment Variables
-
-Make sure to set these environment variables in Hugging Face Space:
-- DB_HOST
-- DB_USER
-- DB_PASSWORD
-- DB_NAME
-- JWT_SECRET_KEY
+- Flask
+- MySQL
+- JWT Authentication
+- Flask-CORS
+- Flask-Bcrypt

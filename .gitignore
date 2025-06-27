@@ -1,1 +1,27 @@
+# Virtual Environment
 venv/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment variables
+.env
+
+# Database
+*.sqlite
+*.db
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# IDE specific files
+.idea/
+.vscode/
+
+# Log files
+*.log
+
+# Uploaded files
+static/uploads/covers/*
+!static/uploads/covers/.gitkeep
