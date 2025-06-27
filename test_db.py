@@ -21,3 +21,7 @@ except mysql.connector.Error as err:
     print(f">>> GAGAL! Terjadi error koneksi: {err}")
 except Exception as e:
     print(f">>> GAGAL! Terjadi error umum: {e}")
+
+API_BASE_URL = window.location.hostname === 'localhost' 
+  ? 'http://localhost:5000' 
+  : 'https://fp-pweb-production.up.railway.app/'
