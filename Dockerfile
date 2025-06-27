@@ -1,4 +1,4 @@
-FROM python:3.8-slim
+FROM python:3.12
 
 WORKDIR /app
 
@@ -17,7 +17,7 @@ ENV PYTHONUNBUFFERED=1
 RUN mkdir -p static/uploads/covers && chmod -R 777 static/uploads
 
 # Expose the port the app runs on
-EXPOSE 5000
+EXPOSE 7860
 
 # Command to run the application
 CMD ["python", "app.py"]
