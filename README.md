@@ -6,6 +6,7 @@ colorTo: yellow
 sdk: docker
 pinned: false
 ---
+<<<<<<< HEAD
 
 # Aplikasi Perpustakaan
 
@@ -37,3 +38,5 @@ Aplikasi REST API perpustakaan menggunakan Flask dan MySQL.
 - JWT Authentication
 - Flask-CORS
 - Flask-Bcrypt
+=======
+>>>>>>> dc3b6bff6e39bfd99d9e96debfd1d0fcafef6417
