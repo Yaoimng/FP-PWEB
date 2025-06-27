@@ -26,4 +26,4 @@ except Exception as e:
 if os.getenv('FLASK_ENV') == 'development':
     API_BASE_URL = 'http://localhost:5000'
 else:
-    API_BASE_URL = 'https://fp-pweb-production.up.railway.app/'
+    API_BASE_URL = 'https://fp-pweb-production.up.railway.app'
