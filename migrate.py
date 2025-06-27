@@ -50,9 +50,25 @@ def migrate():
     )
     ''')
     
-    # Tambahkan indeks
-    cursor.execute('CREATE INDEX IF NOT EXISTS idx_user_id ON borrowings(user_id)')
-    cursor.execute('CREATE INDEX IF NOT EXISTS idx_book_id ON borrowings(book_id)')
+    # Membuat indeks untuk user_id jika belum ada
+    try:
+        cursor.execute("SHOW INDEX FROM borrowings WHERE Key_name = 'idx_user_id'")
+        result = cursor.fetchone()
+        if not result:
+            cursor.execute('CREATE INDEX idx_user_id ON borrowings(user_id)')
+            print("Indeks idx_user_id dibuat")
+    except Exception as e:
+        print(f"Error saat memeriksa/membuat indeks idx_user_id: {e}")
+    
+    # Membuat indeks untuk book_id jika belum ada
+    try:
+        cursor.execute("SHOW INDEX FROM borrowings WHERE Key_name = 'idx_book_id'")
+        result = cursor.fetchone()
+        if not result:
+            cursor.execute('CREATE INDEX idx_book_id ON borrowings(book_id)')
+            print("Indeks idx_book_id dibuat")
+    except Exception as e:
+        print(f"Error saat memeriksa/membuat indeks idx_book_id: {e}")
     
     # Commit perubahan
     conn.commit()
@@ -69,6 +85,7 @@ def migrate():
         VALUES ('Administrator', 'admin@perpustakaan.com', %s, 'admin')
         ''', (hashed_password,))
         conn.commit()
+        print("User admin default dibuat")
     
     cursor.close()
     conn.close()
